@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Bem Vindo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card>
+	<ion-card-header>
+		Login
+	</ion-card-header>
+	<ion-card-content>
+		<ion-grid>
+
+			<ion-row>
+				<ion-col>
+					<ion-item>
+						<ion-label floating>
+							Email
+						</ion-label>
+						<ion-input nema="email" [(ngModel)]="credencial.email"></ion-input>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+			
+			<ion-row>
+				<ion-col>
+					<ion-item>
+						<ion-label floating>
+							Senha
+						</ion-label>
+						<ion-input name="senha" [(ngModel)]="credencial.senha" type="password"></ion-input>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+
+			<ion-row>
+				<ion-col>
+					<button ion-button (click)="loginComCredencial()" full color="primary">
+						Logar
+					</button>
+				</ion-col>
+			</ion-row>
+
+			<ion-row>
+				<ion-col width="50">
+					<button ion-button (click)="loginComFacebook()" full class="btnLogin">
+						Facebook
+					</button>
+				</ion-col>
+			
+
+			
+				<ion-col width="50">
+					<button ion-button full (click)="loginComGoogle()" class="btnLogin">
+						Google
+					</button>
+				</ion-col>
+			</ion-row>
+
+			<ion-row>
+				<ion-col>
+					<a (click)="doRegistro()">Registrar-se</a>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>
+</ion-content>

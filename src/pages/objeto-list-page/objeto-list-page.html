@@ -1,0 +1,33 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+  <button ion-button menuToggle> <ion-icon name="menu"></ion-icon></button>
+    <ion-title>Meus Ojetos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-list [virtualScroll]="objetos">
+    <ion-item-sliding *virtualItem="let objeto">
+      <button ion-item (click)="atualizarObjeto(objeto)">
+        <objeto-list-itens [objeto]="objeto"></objeto-list-itens>
+      </button>
+
+      <ion-item-options>
+        <button ion-button clear icon-only (click)="showConfirm(objeto)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
+
+<ion-fab bottom right>
+	<button ion-fab color="primary" (click)="adicionarObjeto()">
+		<ion-icon name="add"></ion-icon>
+	</button>
+</ion-fab>

@@ -1,0 +1,58 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{objeto.titulo != undefined ? objeto.titulo : 'meu objeto'}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<ion-item>
+					<ion-label floating>
+						Titulo
+					</ion-label>
+					<ion-input name="titulo" [(ngModel)]="objeto.titulo" required></ion-input>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col>
+				<ion-item>
+					<ion-label floating>
+						Descrição
+					</ion-label>
+					<ion-input name="descricao" [(ngModel)]="objeto.descricao" required></ion-input>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col>
+				<ion-item>
+					<ion-label floating>
+						Estado
+					</ion-label>
+					<ion-input name="estado" [(ngModel)]="objeto.estado">
+					</ion-input>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+
+		<ion-row>
+			<ion-col>
+				<button ion-button full (click)="salvarObjeto()">
+					Salvar Objeto
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</form>
+</ion-content>
