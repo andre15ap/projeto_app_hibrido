@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { Credencial } from "../models/Credencial";
 import firebase from "firebase";
 import { LoadingController } from 'ionic-angular';
-
+import { LoginPage } from '../pages/login/login'
 
 
 @Injectable()
@@ -77,8 +77,9 @@ export class LoginProvider {
   }
 
   sair(){
+		console.log('saindo');
   	firebase.auth().signOut()
-  	.then(() => this.logout.emit(true))
+  	.then(() =>this.logout.emit(true))
   	.catch(error => this.falhaLogin(error))
   }
 

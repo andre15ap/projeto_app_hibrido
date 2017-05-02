@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RegistrarPage } from "../registrar/registrar";
 import { ObjetoListPage } from "../objeto-list-page/objeto-list-page";
+import { HomePage } from "../home/home";
 import { LoginProvider } from "../../providers/login-provider";
 import { Credencial } from "../../models/Credencial";
 
@@ -33,26 +34,31 @@ credencial:Credencial;
     //this.credencial = new Credencial();
     //console.log('ionViewDidLoad Login');
     this.loginProvider.loginSucesso.subscribe(
-      user => this.navCtrl.setRoot(ObjetoListPage)
+      user => this.navCtrl.push(HomePage) //pagina chamada se o login der certo
     )
     this.loginProvider.loginFalha.subscribe(
-      error =>console.log(error)
+
+      error =>this.erro()
+
       )
   }
 
 
 
   loginComCredencial(){
-  
+
     this.loginProvider.loginComCredencial(this.credencial);
+    this.carregar();
   }
 
   loginComGoogle(){
     this.loginProvider.loginComGoogle();
+    this.carregar();
   }
 
   loginComFacebook(){
     this.loginProvider.loginComFacebook();
+    //this.carregar();
   }
   sair(){
     this.loginProvider.sair();
@@ -62,4 +68,20 @@ credencial:Credencial;
   	this.navCtrl.push(RegistrarPage);
   }
 
+  carregar() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+    loader.present();
+  }
+
+
+  erro() {
+    let loader = this.loadingCtrl.create({
+      content: "erro ao carretar...",
+      duration: 3000
+    });
+    loader.present();
+  }
 }

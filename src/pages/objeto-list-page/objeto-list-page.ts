@@ -2,7 +2,9 @@ import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController, LoadingController  } from 'ionic-angular';
 import { Objeto } from "../../models/objeto";
 import { ObjetoProvider } from "../../providers/objeto-provider";
+import { LoginProvider } from "../../providers/login-provider";
 import { ObjetoAddPage } from "../objeto-add-page/objeto-add-page";
+import { LoginPage } from "../login/login";
 
 
 @Component({
@@ -11,19 +13,20 @@ import { ObjetoAddPage } from "../objeto-add-page/objeto-add-page";
 })
 export class ObjetoListPage {
 
-	objetos:Array<Objeto>;
-
+	objetos:Array<Objeto>= new Array<Objeto>();
   constructor(public navCtrl: NavController,
   			     public navParams: NavParams,
   			     public objetoProvider: ObjetoProvider,
+  			     public loginProvider: LoginProvider,
              public toastCtrl: ToastController,
              public ngZone: NgZone,
              public alertCtrl: AlertController,
              public loadingCtrl: LoadingController) {
-            this.objetos = new Array<Objeto>();
+            //this.objetos = new Array<Objeto>();
+
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
 
     /*
      * value - Escuta todas as alterações da referencia
@@ -92,6 +95,34 @@ export class ObjetoListPage {
       ]
     });
     confirm.present();
+  }
+
+
+  confirmSair() { // mensagem de confirmação para sair
+    let confirm = this.alertCtrl.create({
+      title: 'Sair do Aplicativo?',
+      message: 'tem certeza que deseja Sair',
+      buttons: [
+        {
+          text: 'Sair',
+          handler: () => {
+            this.sair();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('cancelado');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  sair(){
+    this.navCtrl.push(LoginPage);
+    this.loginProvider.sair();
   }
 
 }

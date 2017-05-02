@@ -1,8 +1,8 @@
 
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{objeto.titulo != undefined ? objeto.titulo : 'meu objeto'}}</ion-title>
+  <ion-navbar color="principal">
+    <ion-title>{{objeto.titulo != undefined ? objeto.titulo : 'Novo Objeto'}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,7 +17,7 @@
 					<ion-label floating>
 						Titulo
 					</ion-label>
-					<ion-input name="titulo" [(ngModel)]="objeto.titulo" required></ion-input>
+					<ion-input required name="titulo" [(ngModel)]="objeto.titulo" required></ion-input>
 				</ion-item>
 			</ion-col>
 		</ion-row>
@@ -45,6 +45,20 @@
 			</ion-col>
 		</ion-row>
 
+    <ion-row>
+			<ion-col>
+					<ion-label>
+						Imagem
+					</ion-label>
+					<button ion-button (click)="takePicture()">Tirar Foto</button>
+			</ion-col>
+		</ion-row>
+
+    <ion-row>
+      <ion-col>
+          <img [src]="objeto.imagem" *ngIf="objeto.imagem" />
+      </ion-col>
+    </ion-row>
 
 		<ion-row>
 			<ion-col>
@@ -55,4 +69,15 @@
 		</ion-row>
 	</ion-grid>
 </form>
+
+<!-- <ion-card>
+   <ion-card-content>
+     Hello World, this is my camera app
+
+     <button (click)="takePicture()">Take a Picture</button>
+
+     Latest Picture:
+     <img [src]="base64Image" *ngIf="base64Image" />
+   </ion-card-content>
+ </ion-card> -->
 </ion-content>

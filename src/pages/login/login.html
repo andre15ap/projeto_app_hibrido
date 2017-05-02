@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="principal">
     <ion-title>Bem Vindo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-<ion-card>
-	<ion-card-header>
-		Login
+<ion-content class="cont">
+<ion-card floating>
+	<ion-card-header class="centro">
+		<h2 class="centro">Login</h2>
 	</ion-card-header>
 	<ion-card-content>
 		<ion-grid>
@@ -22,7 +22,7 @@
 					</ion-item>
 				</ion-col>
 			</ion-row>
-			
+
 			<ion-row>
 				<ion-col>
 					<ion-item>
@@ -36,7 +36,7 @@
 
 			<ion-row>
 				<ion-col>
-					<button ion-button (click)="loginComCredencial()" full color="primary">
+					<button ion-button (click)="loginComCredencial()" full color="principal">
 						Logar
 					</button>
 				</ion-col>
@@ -45,15 +45,13 @@
 			<ion-row>
 				<ion-col width="50">
 					<button ion-button (click)="loginComFacebook()" full class="btnLogin">
-						Facebook
+						<ion-icon class="icone" name="logo-facebook"></ion-icon>
 					</button>
 				</ion-col>
-			
 
-			
 				<ion-col width="50">
-					<button ion-button full (click)="loginComGoogle()" class="btnLogin">
-						Google
+					<button color="red" ion-button full (click)="loginComGoogle()" class="btnLogin">
+						<ion-icon class="icone" name="logo-google"></ion-icon>
 					</button>
 				</ion-col>
 			</ion-row>

@@ -1,33 +1,42 @@
 
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="principal">
   <button ion-button menuToggle> <ion-icon name="menu"></ion-icon></button>
     <ion-title>Meus Ojetos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="confirmSair()"><ion-icon name="log-out"></ion-icon></button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 
 
-<ion-content>
+<ion-content class="cont">
 
   <ion-list [virtualScroll]="objetos">
     <ion-item-sliding *virtualItem="let objeto">
-      <button ion-item (click)="atualizarObjeto(objeto)">
-        <objeto-list-itens [objeto]="objeto"></objeto-list-itens>
-      </button>
+ 		<ion-item>
+      <ion-thumbnail item-left>
+        <img />
+      </ion-thumbnail>
+      <h2>{{ objeto.titulo }}</h2>
+ 		</ion-item>
+ 		<ion-item-options side='right'>
+ 			<button class="botao" ion-button color='danger' (click)="showConfirm(objeto)"> <ion-icon name="trash"></ion-icon>
+ 			</button>
+ 		</ion-item-options>
+ 		<ion-item-options side='left'>
+ 			<button class="botao" ion-button color='secondary' (click)='atualizarObjeto(objeto)'> <ion-icon name="create"></ion-icon>
+ 			</button>
+ 		</ion-item-options>
+ 	</ion-item-sliding>
 
-      <ion-item-options>
-        <button ion-button clear icon-only (click)="showConfirm(objeto)">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+</ion-list>
+
+    <ion-fab bottom right>
+    	<button ion-fab color="primary" (click)="adicionarObjeto()">
+    		<ion-icon name="add"></ion-icon>
+    	</button>
+    </ion-fab>
 
 </ion-content>
-
-<ion-fab bottom right>
-	<button ion-fab color="primary" (click)="adicionarObjeto()">
-		<ion-icon name="add"></ion-icon>
-	</button>
-</ion-fab>
