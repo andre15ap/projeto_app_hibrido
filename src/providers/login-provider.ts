@@ -2,6 +2,7 @@ import { Injectable, NgZone, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Credencial } from "../models/Credencial";
+import { Usuario } from "../models/usuario";
 import firebase from "firebase";
 import { LoadingController } from 'ionic-angular';
 import { LoginPage } from '../pages/login/login'
@@ -15,15 +16,19 @@ export class LoginProvider {
 	loginFalha:EventEmitter<any>; //para saber se teve erro no login
 	logout:EventEmitter<any>;
 
+	public perfilUsuario: any;
+
   constructor(public ngZone: NgZone,
 							public loadingCtrl: LoadingController) { //ng zone é uma zona com o status
     console.log('Chamou o provider');
-    this.loginSucesso  = new EventEmitter();
+
+		this.loginSucesso  = new EventEmitter();
     this.loginFalha  = new EventEmitter();
     this.logout  = new EventEmitter();
 
     firebase.auth().onAuthStateChanged(usuario =>{ //pega o usuario atual
     this.verificaUsuario(usuario); // chamva o verifica usuario passando o usuario atual
+		this.perfilUsuario = firebase.database().ref('/dadosUsuarios');
 	})
   }
 
@@ -62,10 +67,16 @@ export class LoginProvider {
   	}
 
 
-  registrarUsuario(credencial: Credencial){
-  	firebase.auth().createUserWithEmailAndPassword(credencial.email, credencial.senha)
-  	.then(result =>console.log(result))
-  	.catch(error => console.log(error));
+  registrarUsuario(usuario: Usuario, credencial: Credencial): firebase.Promise<any>{
+  	return firebase.auth().createUserWithEmailAndPassword(credencial.email, credencial.senha)
+		.then((newUser) => {
+			this.perfilUsuario.child(newUser.uid+'/dados').set({
+				nome: usuario.nome,
+				email: credencial.email,
+				telefone: usuario.telefone
+			});
+		})
+  	.catch(error => console.log(" dados não foram "+error));
   }
 
   private sucessoLogin(response){

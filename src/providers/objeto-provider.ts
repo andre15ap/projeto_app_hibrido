@@ -22,7 +22,7 @@ export class ObjetoProvider {
   }
 
   private inicializar(){
-  	this.reference = firebase.database().ref(this.loginProvider.usuarioAtual.uid+'/objetos/');
+  	this.reference = firebase.database().ref('/dadosUsuarios/'+this.loginProvider.usuarioAtual.uid+'/objetos/');
   	console.log('iniciou');
   }
 
@@ -38,6 +38,14 @@ export class ObjetoProvider {
 
  	this.reference.child(refKey).update(objeto); //atualiza o objeto no firebase
  }
+
+ //  save(objeto:Objeto): firebase.Promise<any>{ //pode usar esse e depois o atualizar
+ // 	return this.reference.push({
+ //        titulo: objeto.titulo,
+ //        descricao: objeto.descricao,
+ //        estado: objeto.estado
+ //      });
+ // }
 
  deletar(objeto:Objeto):any{
  	return this.reference.child(objeto.ketReference).remove(); //remove o objeto no firebase

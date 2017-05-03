@@ -43,7 +43,7 @@ export class ObjetoAddPage {
         targetHeight: 300
     }).then((imageData) => {
       // imageData is a base64 encoded string
-        this.objeto.imagem = "data:image/jpeg;base64," + imageData;
+        this.imageUrl = "data:image/jpeg;base64," + imageData;
     }, (err) => {
         console.log(err);
     });

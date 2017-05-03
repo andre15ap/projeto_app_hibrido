@@ -16,6 +16,28 @@
 			<ion-card-content>
 				<ion-grid>
 
+          <ion-row>
+						<ion-col>
+							<ion-item>
+								<ion-label floating>
+									Nome
+								</ion-label>
+								<ion-input name="nome" required [(ngModel)]="usuario.nome"></ion-input>
+							</ion-item>
+						</ion-col>
+					</ion-row>
+
+          <ion-row>
+						<ion-col>
+							<ion-item>
+								<ion-label floating>
+									Telefone
+								</ion-label>
+								<ion-input name="telefone" required [(ngModel)]="usuario.telefone"></ion-input>
+							</ion-item>
+						</ion-col>
+					</ion-row>
+
 					<ion-row>
 						<ion-col>
 							<ion-item>

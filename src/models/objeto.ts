@@ -1,19 +1,19 @@
 import {ObjetoEstado} from "./objeto-estado";
 
 export class Objeto {
-	ketReference: number;
+	ketReference: any;
 	titulo: string;
 	descricao: string;
 	estado: string;
-	imagem: string;
+	//imagem: string;
 
 
-constructor(id?: number, titulo?:string, descricao?: string, estado?:string, imagem?:string){
+constructor(id?: any, titulo?:string, descricao?: string, estado?:string, imagem?:string){
 	this.ketReference = id;
 	this.titulo = titulo;
 	this.descricao = descricao;
 	this.estado = estado;
-	this.imagem = imagem;
+	//this.imagem = imagem;
 }
 
 
