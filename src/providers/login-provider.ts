@@ -70,7 +70,8 @@ export class LoginProvider {
   registrarUsuario(usuario: Usuario, credencial: Credencial): firebase.Promise<any>{
   	return firebase.auth().createUserWithEmailAndPassword(credencial.email, credencial.senha)
 		.then((newUser) => {
-			this.perfilUsuario.child(newUser.uid+'/dados').set({
+			this.perfilUsuario.child(newUser.uid).set({
+				id: newUser.uid,
 				nome: usuario.nome,
 				email: credencial.email,
 				telefone: usuario.telefone
@@ -88,9 +89,13 @@ export class LoginProvider {
   }
 
   sair(){
-		console.log('saindo');
+
   	firebase.auth().signOut()
-  	.then(() =>this.logout.emit(true))
+  	.then(() =>{
+			this.logout.emit(true)
+			this.autenticado = false;
+			console.log('saindo');
+		})
   	.catch(error => this.falhaLogin(error))
   }
 

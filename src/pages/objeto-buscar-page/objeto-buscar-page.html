@@ -1,0 +1,34 @@
+
+<ion-header>
+  <ion-toolbar color="principal">
+  <button ion-button menuToggle> <ion-icon name="menu"></ion-icon></button>
+    <ion-title>Busca por Objetos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="confirmSair()"><ion-icon name="log-out"></ion-icon></button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="cont">
+
+  <ion-list [virtualScroll]="objetos">
+
+ 		<ion-item *virtualItem="let objeto" (click)="clicado(objeto)">
+      <ion-thumbnail item-left>
+        <img />
+      </ion-thumbnail>
+      <h2>{{ objeto.titulo }}</h2>
+ 		</ion-item>
+
+
+</ion-list>
+
+    <!-- <ion-fab bottom right>
+    	<button ion-fab color="primary" (click)="">
+    		<ion-icon name="add"></ion-icon>
+    	</button>
+    </ion-fab> -->
+
+</ion-content>

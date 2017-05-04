@@ -22,7 +22,8 @@ export class ObjetoProvider {
   }
 
   private inicializar(){
-  	this.reference = firebase.database().ref('/dadosUsuarios/'+this.loginProvider.usuarioAtual.uid+'/objetos/');
+  	//this.reference = firebase.database().ref('/dadosUsuarios/'+this.loginProvider.usuarioAtual.uid+'/objetos/');
+  	this.reference = firebase.database().ref('/objetos/');
   	console.log('iniciou');
   }
 
@@ -36,6 +37,7 @@ export class ObjetoProvider {
  		objeto.ketReference = refKey; //o objeto novo recebe o novo id gerado na linha de cima
  	}
 
+	objeto.usuario = this.loginProvider.usuarioAtual.uid;
  	this.reference.child(refKey).update(objeto); //atualiza o objeto no firebase
  }
 

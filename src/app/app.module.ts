@@ -15,6 +15,8 @@ import { ObjetoProvider } from '../providers/objeto-provider';
 import { ObjetoListPage } from '../pages/objeto-list-page/objeto-list-page';
 import { ObjetoAddPage } from '../pages/objeto-add-page/objeto-add-page';
 import { ObjetoListItens } from '../components/objeto-list-itens/objeto-list-itens';
+import { ObjetoBuscarPage } from '../pages/objeto-buscar-page/objeto-buscar-page';
+import { ObjetoVerPage } from '../pages/objeto-ver-page/objeto-ver-page';
 import firebase from "firebase";
 
 const firebaseConfig = {
@@ -35,7 +37,9 @@ const firebaseConfig = {
     RegistrarPage,
     ObjetoListPage,
     ObjetoAddPage,
-    ObjetoListItens
+    ObjetoListItens,
+    ObjetoBuscarPage,
+    ObjetoVerPage
   ],
   imports: [
     HttpModule,
@@ -50,7 +54,9 @@ const firebaseConfig = {
     RegistrarPage,
     ObjetoListPage,
     ObjetoAddPage,
-    ObjetoListItens
+    ObjetoListItens,
+    ObjetoBuscarPage,
+    ObjetoVerPage
   ],
   providers: [
     LoginProvider,

@@ -71,7 +71,7 @@ credencial:Credencial;
   carregar() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 3000
+      duration: 2000
     });
     loader.present();
   }
@@ -80,7 +80,7 @@ credencial:Credencial;
   erro() {
     let loader = this.loadingCtrl.create({
       content: "erro ao carretar...",
-      duration: 3000
+      duration: 1000
     });
     loader.present();
   }
