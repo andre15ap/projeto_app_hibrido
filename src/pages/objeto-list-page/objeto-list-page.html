@@ -15,7 +15,7 @@
 
   <ion-list [virtualScroll]="objetos">
     <ion-item-sliding *virtualItem="let objeto">
- 		<ion-item>
+ 		<ion-item (click)="clicou(objeto)">
       <ion-thumbnail item-left>
         <img />
       </ion-thumbnail>

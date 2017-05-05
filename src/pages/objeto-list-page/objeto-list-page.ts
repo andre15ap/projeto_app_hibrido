@@ -4,6 +4,7 @@ import { Objeto } from "../../models/objeto";
 import { ObjetoProvider } from "../../providers/objeto-provider";
 import { LoginProvider } from "../../providers/login-provider";
 import { ObjetoAddPage } from "../objeto-add-page/objeto-add-page";
+import { ObjetoVerPage } from "../objeto-ver-page/objeto-ver-page";
 import { LoginPage } from "../login/login";
 
 
@@ -15,7 +16,7 @@ export class ObjetoListPage {
 
 	objetos:Array<Objeto>= new Array<Objeto>();
   removido: Objeto;
-  
+
   constructor(public navCtrl: NavController,
   			     public navParams: NavParams,
   			     public objetoProvider: ObjetoProvider,
@@ -127,6 +128,11 @@ export class ObjetoListPage {
       ]
     });
     confirm.present();
+  }
+
+  clicou(objeto:Objeto){
+    console.log(objeto);
+    this.navCtrl.push(ObjetoVerPage,{'objeto':objeto});
   }
 
   sair(){

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Objeto } from "../../models/objeto"
 import { Usuario  } from "../../models/usuario"
 import firebase from "firebase";
+//import { AngularFire } from 'angularfire2';
 
 
 @IonicPage()
@@ -14,7 +15,10 @@ export class ObjetoVerPage {
 
   objeto: Objeto;
   objetos: Array<Objeto>;
-  teste :string = '';
+  teste: string = "nome teste";
+  usuario: Usuario;
+
+//  ob: FirebaseObjectObservable<any>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -23,31 +27,22 @@ export class ObjetoVerPage {
     this.objeto = this.navParams.get('objeto');
     this.objetos = new Array<Objeto>();
     console.log('entrou no ver');
-    //this.verUsuario();
+    this.usuario = new Usuario();
+    this.fun();
 
   }
 
-  ionViewDidLoad() {
+
+  fun():any {
     this.objeto = this.navParams.get('objeto');
 
-      return firebase.database().ref('/dadosUsuarios/' + this.objeto.usuario).once('value').then(function(snapshot) {
+        firebase.database().ref('/dadosUsuarios/' + this.objeto.usuario).once('value', (snapshot)=> {
+        console.log(snapshot.val());
 
-      var nome = snapshot.val().nome;
-       let tel = snapshot.val().telefone;
-       let email = snapshot.val().email;
-       let id = snapshot.key;
-      //this.usario.id = snapshot.key;
-      //this.usuario.email = snapshot.val().email;
-      //this.usuario.telefone = snapshot.val().telefone;
-
-       console.log(nome+' '+tel+' '+email+" "+id);
-      // this.nome.push(nome);
-      //  if(nome instanceof Object){
-      //    console.log('objeto é');
-      //  }else{
-      //    console.log('não é objeto');
-      //  }
-
+        this.usuario.nome = snapshot.val().nome;
+        this.usuario.telefone = snapshot.val().telefone;
+        this.usuario.email = snapshot.val().email;
+        console.log(this.usuario.nome);
 
     });
   }
