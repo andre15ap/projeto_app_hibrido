@@ -1,9 +1,4 @@
-<!--
-  Generated template for the ObjetoVerPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="principal">
@@ -12,34 +7,39 @@
 
 </ion-header>
 
+<ion-content no-padding>
+<ion-card>
 
-<ion-content padding>
+  <ion-item>
+
+    <h1>{{objeto.titulo}}</h1>
+    <p>Doador: {{usuario.nome}}</p>
+  </ion-item>
+
+  <img class="img" src="../../assets/icon/favicon.ico"/>
+
+  <ion-card-content>
+
+      <h2 class="testo">Descrição</h2>
+      <p class="testo">{{objeto.descricao}}</p>
 
 
-  <div class="img">
-    <img src="../../assets/icon/favicon.ico"/>
-  </div>
+    <ion-item>
+      <h2>Telefone do Doador</h2>
+      <p>{{usuario.telefone}}</p>
+    </ion-item>
 
-  <h2>{{objeto.titulo}}</h2>
+    <ion-item>
+      <h2>Email do Doador</h2>
+      <p>{{usuario.email}}</p>
+    </ion-item>
 
-  <div class="">
-    <h3>Descrição</h3>
-    <p>{{objeto.descricao}}</p>
+    <ion-item>
+      <h2>{{objeto.estado == 'doado' ? 'Objeto Já Doado' : 'Para Doação'}}</h2>
+    </ion-item>
+  </ion-card-content>
 
-    <h3>Doador</h3>
-    <p>{{usuario.nome}}</p>
 
-    <h3>Telefone</h3>
-    <p>{{usuario.telefone}}</p>
 
-    <h3>Email</h3>
-    <p>{{usuario.email}}</p>
-
-    <h2>{{objeto.estado == 'doado' ? 'Objeto Já Doado' : 'Para Doação'}}</h2>
-  </div>
-
-  <!-- <h3>{{objeto.estado}}</h3>
-  <h4>{{usuario.nome}}</h4>
-  <h4>{{usuario.telefone}}</h4>
-  <h4>{{usuario.email}}</h4> -->
+</ion-card>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { Objeto } from "../../models/objeto";
 import { Usuario } from "../../models/usuario";
@@ -27,7 +27,8 @@ export class DoadosPage {
               public navParams: NavParams,
               public objetoProvider: ObjetoProvider,
               public loginProvider: LoginProvider,
-              public ngZone: NgZone) {
+              public ngZone: NgZone,
+              public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -66,6 +67,34 @@ export class DoadosPage {
     //this.usuario = this.loginProvider.usuarioAtual;
     //console.log(objeto.usuario);
     this.navCtrl.push(ObjetoVerPage,{'objeto':objeto});
+
+  }
+
+  confirmSair() { // mensagem de confirmação para sair
+    let confirm = this.alertCtrl.create({
+      title: 'Sair do Aplicativo?',
+      message: 'tem certeza que deseja Sair',
+      buttons: [
+        {
+          text: 'Sair',
+          handler: () => {
+            this.sair();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('cancelado');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  sair(){
+    this.loginProvider.sair();
+    this.navCtrl.setRoot(LoginPage);
 
   }
 

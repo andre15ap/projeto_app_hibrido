@@ -13,6 +13,9 @@
 
 <ion-content class="cont">
 
+  <div *ngIf="objetos.length < 1">
+    <h2>Nenhum Objeto foi doado até o momento</h2>
+  </div>
   <ion-list [virtualScroll]="objetos">
 
  		<ion-item *virtualItem="let objeto" (click)="clicado(objeto)">
@@ -22,8 +25,9 @@
       <h2>{{ objeto.titulo }}</h2>
  		</ion-item>
 
-
 </ion-list>
+
+
 
 
 

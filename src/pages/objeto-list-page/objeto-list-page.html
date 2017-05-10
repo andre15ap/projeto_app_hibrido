@@ -13,6 +13,10 @@
 
 <ion-content class="cont">
 
+  <div *ngIf="objetos.length < 1">
+    <h2>Você não tem Objetos cadastrados para serem doados</h2>
+  </div>
+
   <ion-list [virtualScroll]="objetos">
     <ion-item-sliding *virtualItem="let objeto">
  		<ion-item (click)="clicou(objeto)">
@@ -32,6 +36,7 @@
  	</ion-item-sliding>
 
 </ion-list>
+
 
     <ion-fab bottom right>
     	<button ion-fab color="primary" (click)="adicionarObjeto()">

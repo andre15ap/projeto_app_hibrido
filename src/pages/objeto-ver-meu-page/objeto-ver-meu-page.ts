@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Objeto } from "../../models/objeto"
 import { Usuario  } from "../../models/usuario"
 import { ObjetoProvider } from "../../providers/objeto-provider";
@@ -25,7 +25,8 @@ export class ObjetoVerMeuPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public ngZone: NgZone,
-              public objetoProvider: ObjetoProvider) {
+              public objetoProvider: ObjetoProvider,
+              public alertCtrl: AlertController) {
 
           this.objeto = this.navParams.get('objeto');
           this.usuario = new Usuario();
@@ -44,6 +45,27 @@ export class ObjetoVerMeuPage {
     });
   }
 
+  confirmDoar() { // mensagem de confirmação para sair
+    let confirm = this.alertCtrl.create({
+      title: 'Doado',
+      message: 'tem certeza que o objeto va foi doado?',
+      buttons: [
+        {
+          text: 'Confirmar',
+          handler: () => {
+            this.doado();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('cancelado');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
   doado(){
     this.objeto.estado = "doado";
     this.objetoProvider.save(this.objeto);
