@@ -4,7 +4,7 @@ import { Objeto } from "../../models/objeto";
 import { ObjetoProvider } from "../../providers/objeto-provider";
 import { LoginProvider } from "../../providers/login-provider";
 import { ObjetoAddPage } from "../objeto-add-page/objeto-add-page";
-import { ObjetoVerPage } from "../objeto-ver-page/objeto-ver-page";
+import { ObjetoVerMeuPage } from "../objeto-ver-meu-page/objeto-ver-meu-page";
 import { LoginPage } from "../login/login";
 
 
@@ -53,7 +53,7 @@ export class ObjetoListPage {
         snapshot.forEach(elemento => {
           let el = elemento.val();
 
-          if(el.usuario == this.loginProvider.usuarioAtual.uid){//passa so objto do usuario atual
+          if((el.usuario == this.loginProvider.usuarioAtual.uid) && el.estado == "novo"){//passa so objto do usuario atual
             innerArray.push(el);
           }
 
@@ -132,7 +132,7 @@ export class ObjetoListPage {
 
   clicou(objeto:Objeto){
     console.log(objeto);
-    this.navCtrl.push(ObjetoVerPage,{'objeto':objeto});
+    this.navCtrl.push(ObjetoVerMeuPage,{'objeto':objeto});
   }
 
   sair(){

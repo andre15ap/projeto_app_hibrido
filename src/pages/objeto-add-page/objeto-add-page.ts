@@ -31,6 +31,7 @@ export class ObjetoAddPage {
   }
 
   salvarObjeto(){
+    this.objeto.estado = "novo";
     this.objetoProvider.save(this.objeto);
     this.viewCtrl.dismiss();//fecha a tela
   }

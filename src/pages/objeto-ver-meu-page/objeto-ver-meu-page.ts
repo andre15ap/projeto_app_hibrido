@@ -2,34 +2,34 @@ import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Objeto } from "../../models/objeto"
 import { Usuario  } from "../../models/usuario"
+import { ObjetoProvider } from "../../providers/objeto-provider";
+import { ObjetoListPage } from "../objeto-list-page/objeto-list-page";
 import firebase from "firebase";
-//import { AngularFire } from 'angularfire2';
 
-
+/**
+ * Generated class for the ObjetoVerMeuPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
 @IonicPage()
 @Component({
-  selector: 'page-objeto-ver-page',
-  templateUrl: 'objeto-ver-page.html',
+  selector: 'page-objeto-ver-meu-page',
+  templateUrl: 'objeto-ver-meu-page.html',
 })
-export class ObjetoVerPage {
+export class ObjetoVerMeuPage {
 
   objeto: Objeto;
-  objetos: Array<Objeto>;
-  teste: string = "nome teste";
   usuario: Usuario;
-
-//  ob: FirebaseObjectObservable<any>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public ngZone: NgZone) {
+              public ngZone: NgZone,
+              public objetoProvider: ObjetoProvider) {
 
-    this.objeto = this.navParams.get('objeto');
-    this.objetos = new Array<Objeto>();
-    console.log('entrou no ver');
-    this.usuario = new Usuario();
+          this.objeto = this.navParams.get('objeto');
+          this.usuario = new Usuario();
   }
-
 
   ionViewWillEnter() {
         //this.objeto = this.navParams.get('objeto');
@@ -44,5 +44,11 @@ export class ObjetoVerPage {
     });
   }
 
+  doado(){
+    this.objeto.estado = "doado";
+    this.objetoProvider.save(this.objeto);
+    this.navCtrl.setRoot(ObjetoListPage);
+    console.log("doado");
+  }
 
 }

@@ -1,35 +1,33 @@
-
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, LoadingController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { Objeto } from "../../models/objeto";
 import { Usuario } from "../../models/usuario";
 import { ObjetoProvider } from "../../providers/objeto-provider";
 import { LoginProvider } from "../../providers/login-provider";
-import { ObjetoAddPage } from "../objeto-add-page/objeto-add-page";
 import { LoginPage } from "../login/login";
 import { ObjetoVerPage } from "../objeto-ver-page/objeto-ver-page";
 
-
+/**
+ * Generated class for the DoadosPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
 @IonicPage()
 @Component({
-  selector: 'page-objeto-buscar-page',
-  templateUrl: 'objeto-buscar-page.html',
+  selector: 'page-doados-page',
+  templateUrl: 'doados-page.html',
 })
-export class ObjetoBuscarPage {
+export class DoadosPage {
 
   objetos:Array<Objeto>= new Array<Objeto>();
-  usuario: any;
 
   constructor(public navCtrl: NavController,
-             public navParams: NavParams,
-             public objetoProvider: ObjetoProvider,
-             public loginProvider: LoginProvider,
-             public toastCtrl: ToastController,
-             public ngZone: NgZone,
-             public alertCtrl: AlertController,
-             public loadingCtrl: LoadingController) {
-            //this.objetos = new Array<Objeto>();
-
+              public navParams: NavParams,
+              public objetoProvider: ObjetoProvider,
+              public loginProvider: LoginProvider,
+              public ngZone: NgZone) {
   }
 
   ionViewWillEnter() {
@@ -50,7 +48,7 @@ export class ObjetoBuscarPage {
         snapshot.forEach(elemento => {
           let el = elemento.val();
 
-          if((el.usuario != this.loginProvider.usuarioAtual.uid) && el.estado == "novo"){//passa so objto do usuario atual
+          if(el.estado == "doado"){//passa so objto do usuario atual
             innerArray.push(el);
           }
 
@@ -60,8 +58,7 @@ export class ObjetoBuscarPage {
       })
     })
   }
-}
-
+  }
 
   clicado(objeto:Objeto){
 
@@ -72,33 +69,4 @@ export class ObjetoBuscarPage {
 
   }
 
-
-  confirmSair() { // mensagem de confirmação para sair
-    let confirm = this.alertCtrl.create({
-      title: 'Sair do Aplicativo?',
-      message: 'tem certeza que deseja Sair',
-      buttons: [
-        {
-          text: 'Sair',
-          handler: () => {
-            this.sair();
-          }
-        },
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('cancelado');
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
-  sair(){
-    this.loginProvider.sair();
-    this.navCtrl.push(LoginPage);
-
-  }
-
-  }
+}

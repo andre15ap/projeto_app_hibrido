@@ -7,17 +7,39 @@
 <ion-header>
 
   <ion-navbar color="principal">
-    <ion-title >Detalhes</ion-title>
+    <ion-title >{{objeto.estado == 'doado' ? 'Detalhes Objeto Doado' : 'Detalhes Objeto Publicado'}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h3>{{objeto.titulo}}</h3>
-  <h3>{{objeto.descricao}}</h3>
-  <h3>{{objeto.estado}}</h3>
+
+
+  <div class="img">
+    <img src="../../assets/icon/favicon.ico"/>
+  </div>
+
+  <h2>{{objeto.titulo}}</h2>
+
+  <div class="">
+    <h3>Descrição</h3>
+    <p>{{objeto.descricao}}</p>
+
+    <h3>Doador</h3>
+    <p>{{usuario.nome}}</p>
+
+    <h3>Telefone</h3>
+    <p>{{usuario.telefone}}</p>
+
+    <h3>Email</h3>
+    <p>{{usuario.email}}</p>
+
+    <h2>{{objeto.estado == 'doado' ? 'Objeto Já Doado' : 'Para Doação'}}</h2>
+  </div>
+
+  <!-- <h3>{{objeto.estado}}</h3>
   <h4>{{usuario.nome}}</h4>
   <h4>{{usuario.telefone}}</h4>
-  <h4>{{usuario.email}}</h4>
+  <h4>{{usuario.email}}</h4> -->
 </ion-content>

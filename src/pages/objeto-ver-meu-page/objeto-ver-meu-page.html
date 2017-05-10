@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar color="principal">
+    <ion-title >Detalhes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h2>{{objeto.titulo}}</h2>
+  <div class="img">
+    <img src="../../assets/icon/favicon.ico"/>
+  </div>
+  <div class="">
+    <h3>Descrição</h3>
+    <p>{{objeto.descricao}}</p>
+
+    <h3>Doador</h3>
+    <p>{{usuario.nome}}</p>
+
+    <h3>Telefone</h3>
+    <p>{{usuario.telefone}}</p>
+
+    <h3>Email</h3>
+    <p>{{usuario.email}}</p>
+  </div>
+
+<button ion-button block (click)="doado(objeto)">Doado</button>
+</ion-content>
