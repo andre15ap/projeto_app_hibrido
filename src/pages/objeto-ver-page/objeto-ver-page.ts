@@ -32,7 +32,7 @@ export class ObjetoVerPage {
 
 
   ionViewWillEnter() {
-        //this.objeto = this.navParams.get('objeto');
+        this.objeto = this.navParams.get('objeto');
         firebase.database().ref('/dadosUsuarios/' + this.objeto.usuario).once('value', (snapshot)=> {
         console.log(snapshot.val());
 

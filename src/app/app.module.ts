@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrarPage } from '../pages/registrar/registrar';
 import { LoginProvider } from '../providers/login-provider';
 import { ObjetoProvider } from '../providers/objeto-provider';
+import { CameraProvider } from '../providers/camera-provider';
 import { ObjetoListPage } from '../pages/objeto-list-page/objeto-list-page';
 import { ObjetoAddPage } from '../pages/objeto-add-page/objeto-add-page';
 import { ObjetoListItens } from '../components/objeto-list-itens/objeto-list-itens';
@@ -67,6 +68,7 @@ const firebaseConfig = {
   providers: [
     LoginProvider,
     ObjetoProvider,
+    CameraProvider,
     StatusBar,
     SplashScreen,
     Camera,

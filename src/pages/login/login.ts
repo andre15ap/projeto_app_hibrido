@@ -5,6 +5,8 @@ import { ObjetoListPage } from "../objeto-list-page/objeto-list-page";
 import { HomePage } from "../home/home";
 import { LoginProvider } from "../../providers/login-provider";
 import { Credencial } from "../../models/Credencial";
+import { EmailValidator } from '../../validator/email';
+import { FormBuilder, Validators } from '@angular/forms'
 
 /**
  * Generated class for the Login page.
@@ -20,11 +22,18 @@ import { Credencial } from "../../models/Credencial";
 export class LoginPage {
 
 credencial:Credencial;
-
+login: any = {};
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public formBuilder: FormBuilder,
               public loginProvider: LoginProvider,
               public loadingCtrl: LoadingController) {
+
+      this.login = this.formBuilder.group({
+     	email:['',Validators.compose([Validators.required, EmailValidator.isValid])],
+     	senha:['',Validators.compose([Validators.minLength(6), Validators.required])]
+
+     });
     this.credencial = new Credencial();
   }
 
@@ -47,7 +56,7 @@ credencial:Credencial;
 
   loginComCredencial(){
 
-    this.loginProvider.loginComCredencial(this.credencial);
+    this.loginProvider.loginComCredencial(this.login.value);
     this.carregar();
   }
 
@@ -79,7 +88,7 @@ credencial:Credencial;
 
   erro() {
     let loader = this.loadingCtrl.create({
-      content: "erro ao carretar...",
+      content: "email ou senha incorretos...",
       duration: 1000
     });
     loader.present();

@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Objeto } from "../../models/objeto";
 import { ObjetoProvider } from "../../providers/objeto-provider";
+import { CameraProvider } from "../../providers/camera-provider";
 import {Camera} from '@ionic-native/camera';
+import { FormBuilder, Validators } from '@angular/forms'
 
 
 @IonicPage()
@@ -14,13 +16,22 @@ export class ObjetoAddPage {
   public base64Image: string;
   objeto:Objeto;
   imageUrl: string = '';
+  cadastro: any = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public viewCtrl: ViewController,
+              public formBuilder: FormBuilder,
   			      public objetoProvider: ObjetoProvider,
+  			      public cameraProvider: CameraProvider,
               private camera: Camera) {
     this.objeto = new Objeto;
+
+    this.cadastro = this.formBuilder.group({
+    titulo:['',Validators.compose([Validators.minLength(5), Validators.required])],
+    descricao:['',Validators.compose([Validators.minLength(10), Validators.required])]
+
+   });
   }
 
   ionViewDidLoad() {
@@ -36,19 +47,26 @@ export class ObjetoAddPage {
     this.viewCtrl.dismiss();//fecha a tela
   }
 
-
-    takePicture(){
-    this.camera.getPicture({
-        destinationType: this.camera.DestinationType.DATA_URL,
-        targetWidth: 300,
-        targetHeight: 300
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-        this.imageUrl = "data:image/jpeg;base64," + imageData;
-    }, (err) => {
-        console.log(err);
-    });
-  }
+foto()
+{
+  this.cameraProvider.carregaFoto();
+}
+  //   takePicture(){
+  //   var imageSource;
+  //   this.camera.getPicture({
+  //       destinationType: this.camera.DestinationType.DATA_URL,
+  //       sourceType: imageSource,
+  //       targetHeight: 640,
+  //       correctOrientation: true
+  //   }).then((imageData) => {
+  //     // imageData is a base64 encoded string
+  //
+  //       return this.transformarArqEmBlob(_imagePath, tipo);
+  //       this.imageUrl = "data:image/jpeg;base64," + imageData;
+  //   }, (err) => {
+  //       console.log(err);
+  //   });
+  // }
 
 
 }

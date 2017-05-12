@@ -11,14 +11,14 @@
 	</ion-card-header>
 	<ion-card-content>
 		<ion-grid>
-
+       <form [formGroup]='login' (ngSubmit)='loginComCredencial()'>
 			<ion-row>
 				<ion-col>
 					<ion-item>
 						<ion-label floating>
 							Email
 						</ion-label>
-						<ion-input nema="email" [(ngModel)]="credencial.email"></ion-input>
+						<ion-input type='email' name='email' formControlName='email'></ion-input>
 					</ion-item>
 				</ion-col>
 			</ion-row>
@@ -29,19 +29,20 @@
 						<ion-label floating>
 							Senha
 						</ion-label>
-						<ion-input name="senha" [(ngModel)]="credencial.senha" type="password"></ion-input>
+						<ion-input type='password' name='senha' formControlName='senha'></ion-input>
 					</ion-item>
 				</ion-col>
 			</ion-row>
 
 			<ion-row>
 				<ion-col>
-					<button ion-button (click)="loginComCredencial()" full color="principal">
+					<!-- <button ion-button (click)="loginComCredencial()" full color="principal">
 						Logar
-					</button>
+					</button> -->
+          <button [disabled]='login.invalid' ion-button full block color='principal'>Logar</button>
 				</ion-col>
 			</ion-row>
-
+    </form>
 			<!-- <ion-row>
 				<ion-col width="50">
 					<button ion-button (click)="loginComFacebook()" full class="btnLogin">
