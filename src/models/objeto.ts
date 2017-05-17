@@ -6,16 +6,16 @@ export class Objeto {
 	titulo: string;
 	descricao: string;
 	estado: string;
-	//imagem: string;
+	imagem: string;
 
 
-constructor(id?: any, titulo?:string, descricao?: string, estado?:string, usuario?:string){
+constructor(id?: any, titulo?:string, descricao?: string, estado?:string, usuario?:string, imagem?:any){
 	this.ketReference = id;
 	this.titulo = titulo;
 	this.descricao = descricao;
 	this.estado = estado;
   this.usuario = usuario;
-	//this.imagem = imagem;
+	this.imagem = imagem;
 }
 
 

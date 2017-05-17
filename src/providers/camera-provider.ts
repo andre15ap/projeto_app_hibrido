@@ -22,7 +22,9 @@ export class CameraProvider {
   public loading;
   assetCollection;
 
-  constructor(public http: Http, public loadingCtrl: LoadingController, private camera: Camera) {
+  constructor(public http: Http,
+              public loadingCtrl: LoadingController,
+              private camera: Camera) {
     console.log('Hello CameraProvider Provider');
   }
 
@@ -51,8 +53,8 @@ export class CameraProvider {
     //console.log(Device)
     var imageSource;
     // var url;
-
-      imageSource = this.camera.PictureSourceType.CAMERA;
+    alert('entrou no pega');
+    //imageSource = this.camera.PictureSourceType.CAMERA;
 
     // let imageSource = (Device.isVirtual ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA);
     // imageSource = Camera.PictureSourceType.PHOTOLIBRARY;
@@ -66,7 +68,7 @@ export class CameraProvider {
 
       this.camera.getPicture({
         destinationType: this.camera.DestinationType.FILE_URI,
-        sourceType: imageSource,
+        sourceType: this.camera.PictureSourceType.CAMERA,
         targetHeight: 640,
         correctOrientation: true
       }).then((_imagePath) => {
@@ -106,7 +108,7 @@ export class CameraProvider {
     var caminho;
 
       caminho = '';
-
+      alert('entrou no transformarArqEmBlob');
 
     // Instalar - cordova plugin add cordova-plugin-file
     return new Promise((resolve, reject) => {
@@ -183,5 +185,35 @@ export class CameraProvider {
     });
 
   }
+
+
+  pegaFotoMala(){
+  //console.log(Device)
+  var imageSource;
+  var path;
+
+    imageSource = this.camera.PictureSourceType.CAMERA;
+
+
+  // this.loading = this.loadingCtrl.create({ // inicia o loading
+  //   content: "Aguarde..."
+  // });
+
+
+  // return new Promise((resolve, reject) => {
+
+  this.camera.getPicture({
+    destinationType: this.camera.DestinationType.FILE_URI,
+    sourceType: imageSource,
+    targetHeight: 640,
+    correctOrientation: true
+  }).then((_imagePath) => {
+    path = _imagePath;
+    alert('caminho' + path);
+  });
+  // });
+
+}
+
 
 }

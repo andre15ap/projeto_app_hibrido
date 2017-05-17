@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar color="principal">
@@ -9,7 +8,7 @@
 
 
 <ion-content padding>
-<form [formGroup]='cadastro' (ngSubmit)='salvarObjeto()'>
+<form>
 	<ion-grid>
 		<ion-row>
 			<ion-col>
@@ -17,7 +16,7 @@
 					<ion-label floating>
 						Titulo
 					</ion-label>
-					<ion-input type='text' name='titulo' formControlName='titulo'></ion-input>
+					<ion-input required name="titulo" [(ngModel)]="objeto.titulo" required></ion-input>
 				</ion-item>
 			</ion-col>
 		</ion-row>
@@ -28,44 +27,54 @@
 					<ion-label floating>
 						Descrição
 					</ion-label>
-					<ion-textarea type='text' name='descricao' formControlName='descricao'></ion-textarea>
+					<ion-textarea name="descricao" [(ngModel)]="objeto.descricao" required></ion-textarea>
 				</ion-item>
 			</ion-col>
 		</ion-row>
 
-
-    <ion-row>
+		<!-- <ion-row>
 			<ion-col>
-					<ion-label>
-						Imagem
+				<ion-item>
+					<ion-label floating>
+						Estado
 					</ion-label>
-					<button ion-button (click)="foto()">Tirar Foto</button>
+					<ion-input name="estado" [(ngModel)]="objeto.estado">
+					</ion-input>
+				</ion-item>
 			</ion-col>
-		</ion-row>
+		</ion-row> -->
 
     <ion-row>
-      <ion-col>
-          <img [src]="objeto.imagem" *ngIf="objeto.imagem" />
-      </ion-col>
-    </ion-row>
+  			<ion-col>
+  					<ion-label>
+  						Imagem
+  					</ion-label>
+  					<button ion-button (click)="foto()">Tirar Foto</button>
+  			</ion-col>
+  		</ion-row>
+
+      <ion-row>
+        <ion-col>
+            <img [src]="objeto.imagem" *ngIf="objeto.imagem" />
+        </ion-col>
+      </ion-row>
 
 		<ion-row>
 			<ion-col>
-				<!-- <button ion-button full (click)="salvarObjeto()">
+				<button ion-button full (click)="salvarObjeto()">
 					Salvar Objeto
-				</button> -->
-        <button [disabled]='cadastro.invalid' ion-button full block color='principal'>Salvar</button>
+				</button>
 			</ion-col>
 		</ion-row>
+
+
 	</ion-grid>
 </form>
 
 <!-- <ion-card>
    <ion-card-content>
      Hello World, this is my camera app
-
      <button (click)="takePicture()">Take a Picture</button>
-
      Latest Picture:
      <img [src]="base64Image" *ngIf="base64Image" />
    </ion-card-content>

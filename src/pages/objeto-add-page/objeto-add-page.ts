@@ -27,11 +27,11 @@ export class ObjetoAddPage {
               private camera: Camera) {
     this.objeto = new Objeto;
 
-    this.cadastro = this.formBuilder.group({
-    titulo:['',Validators.compose([Validators.minLength(5), Validators.required])],
-    descricao:['',Validators.compose([Validators.minLength(10), Validators.required])]
-
-   });
+  //   this.cadastro = this.formBuilder.group({
+  //   titulo:['',Validators.compose([Validators.minLength(5), Validators.required])],
+  //   descricao:['',Validators.compose([Validators.minLength(10), Validators.required])]
+   //
+  //  });
   }
 
   ionViewDidLoad() {
@@ -49,24 +49,22 @@ export class ObjetoAddPage {
 
 foto()
 {
-  this.cameraProvider.carregaFoto();
+  this.cameraProvider.pegaFoto();
 }
-  //   takePicture(){
-  //   var imageSource;
-  //   this.camera.getPicture({
-  //       destinationType: this.camera.DestinationType.DATA_URL,
-  //       sourceType: imageSource,
-  //       targetHeight: 640,
-  //       correctOrientation: true
-  //   }).then((imageData) => {
-  //     // imageData is a base64 encoded string
-  //
-  //       return this.transformarArqEmBlob(_imagePath, tipo);
-  //       this.imageUrl = "data:image/jpeg;base64," + imageData;
-  //   }, (err) => {
-  //       console.log(err);
-  //   });
-  // }
+//
+// takePicture(){
+//     this.camera.getPicture({
+//         destinationType: this.camera.DestinationType.DATA_URL,
+//         targetWidth: 400,
+//         targetHeight: 300
+//     }).then((imageData) => {
+//       // imageData is a base64 encoded string
+//       //alert('caminho ' + imageData);
+//         this.objeto.imagem = "data:image/jpeg;base64," + imageData;
+//     }, (err) => {
+//         console.log(err);
+//     });
+//   }
 
 
 }

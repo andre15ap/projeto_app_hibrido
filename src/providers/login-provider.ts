@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { Credencial } from "../models/Credencial";
 import { Usuario } from "../models/usuario";
 import firebase from "firebase";
-import { LoadingController } from 'ionic-angular';
+import { LoadingController} from 'ionic-angular';
 import { LoginPage } from '../pages/login/login'
 
 
@@ -76,8 +76,10 @@ export class LoginProvider {
 				email: credencial.email,
 				telefone: usuario.telefone
 			});
+			this.loginComCredencial(credencial);
 		})
   	.catch(error => console.log(" dados não foram "+error));
+
   }
 
   private sucessoLogin(response){
