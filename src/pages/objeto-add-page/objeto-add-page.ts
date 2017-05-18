@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { Objeto } from "../../models/objeto";
 import { ObjetoProvider } from "../../providers/objeto-provider";
 import { CameraProvider } from "../../providers/camera-provider";
+import { ObjetoAddImgPage } from "../objeto-add-img-page/objeto-add-img-page";
 import {Camera} from '@ionic-native/camera';
 import { FormBuilder, Validators } from '@angular/forms'
 
@@ -42,15 +43,19 @@ export class ObjetoAddPage {
   }
 
   salvarObjeto(){
+
     this.objeto.estado = "novo";
-    this.objetoProvider.save(this.objeto);
-    this.viewCtrl.dismiss();//fecha a tela
+    this.objeto.ketReference = this.objetoProvider.save(this.objeto);
+
+  this.navCtrl.push(ObjetoAddImgPage,{'objeto': this.objeto});
+  //  this.navCtrl.setRoot(ObjetoAddImgPage,{'objeto': this.objeto});
+
   }
 
-foto()
-{
-  this.cameraProvider.pegaFoto();
-}
+// foto()
+// {
+//   this.cameraProvider.pegaFoto();
+// }
 //
 // takePicture(){
 //     this.camera.getPicture({

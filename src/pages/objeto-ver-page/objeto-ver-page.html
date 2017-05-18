@@ -16,7 +16,8 @@
     <p>Doador: {{usuario.nome}}</p>
   </ion-item>
 
-  <img class="img" src="../../assets/icon/favicon.ico"/>
+  <!-- <img class="img" src="../../assets/icon/favicon.ico"/> -->
+  <img class="img" [src]="objeto.imagem" *ngIf="objeto.imagem != 'img' " />
 
   <ion-card-content>
 

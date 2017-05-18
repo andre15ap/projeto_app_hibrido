@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Objeto } from "../models/objeto";
 import { LoginProvider } from "./login-provider";
+import { NavController } from 'ionic-angular';
+import { ObjetoAddImgPage } from '../pages/objeto-add-img-page/objeto-add-img-page';
 import firebase from "firebase";
 
 
@@ -28,7 +30,7 @@ export class ObjetoProvider {
   }
 
 
- save(objeto:Objeto){ //e atualizar
+ save(objeto:Objeto):any{ //e atualizar
  	let refKey;
  	if(objeto.ketReference != undefined){ //se ja existe referencia id
  		refKey =  objeto.ketReference; // a variavel refkey recebe esse id para atualizar
@@ -36,9 +38,11 @@ export class ObjetoProvider {
  		refKey = this.reference.push().key; // caso não exista id, então é um objeto novo, pega novo id
  		objeto.ketReference = refKey; //o objeto novo recebe o novo id gerado na linha de cima
  	}
-
+	objeto.imagem = 'img';
 	objeto.usuario = this.loginProvider.usuarioAtual.uid;
  	this.reference.child(refKey).update(objeto); //atualiza o objeto no firebase
+	console.log('salvou objeto');
+	return refKey;
  }
 
  //  save(objeto:Objeto): firebase.Promise<any>{ //pode usar esse e depois o atualizar

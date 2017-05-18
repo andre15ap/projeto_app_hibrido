@@ -21,7 +21,7 @@
     <ion-item-sliding *virtualItem="let objeto">
  		<ion-item (click)="clicou(objeto)">
       <ion-thumbnail item-left>
-        <img />
+        <img [src]="objeto.imagem" *ngIf="objeto.imagem != 'img' " />
       </ion-thumbnail>
       <h2>{{ objeto.titulo }}</h2>
  		</ion-item>

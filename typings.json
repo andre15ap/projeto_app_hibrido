@@ -1,5 +1,6 @@
 {
   "globalDependencies": {
-    "firebase": "file:node_modules/firebase/firebase.d.ts"
+    "firebase": "file:node_modules/firebase/firebase.d.ts",
+    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20161004182750"
   }
 }

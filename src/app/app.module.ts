@@ -15,6 +15,7 @@ import { ObjetoProvider } from '../providers/objeto-provider';
 import { CameraProvider } from '../providers/camera-provider';
 import { ObjetoListPage } from '../pages/objeto-list-page/objeto-list-page';
 import { ObjetoAddPage } from '../pages/objeto-add-page/objeto-add-page';
+import { ObjetoAddImgPage } from '../pages/objeto-add-img-page/objeto-add-img-page';
 import { ObjetoListItens } from '../components/objeto-list-itens/objeto-list-itens';
 import { ObjetoBuscarPage } from '../pages/objeto-buscar-page/objeto-buscar-page';
 import { ObjetoVerPage } from '../pages/objeto-ver-page/objeto-ver-page';
@@ -44,7 +45,8 @@ const firebaseConfig = {
     ObjetoBuscarPage,
     ObjetoVerPage,
     DoadosPage,
-    ObjetoVerMeuPage
+    ObjetoVerMeuPage,
+    ObjetoAddImgPage
   ],
   imports: [
     HttpModule,
@@ -63,7 +65,8 @@ const firebaseConfig = {
     ObjetoBuscarPage,
     ObjetoVerPage,
     DoadosPage,
-    ObjetoVerMeuPage
+    ObjetoVerMeuPage,
+    ObjetoAddImgPage
   ],
   providers: [
     LoginProvider,
