@@ -6,35 +6,44 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Selecione a imagem do objeto</ion-title>
+  <ion-navbar color="principal">
+    <ion-title>Tirar Foto para {{objeto.titulo}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="cont" padding>
 
 
   <ion-row>
       <ion-col>
           <ion-label>
-            <h4>se tiver objeto</h4>
-            <h3>{{objeto.titulo}}</h3>
-            <h3>{{objeto.descricao}}</h3>
+            <h2 class="tam">Titulo do Objeto</h2>
+            <h4 class="tam2">{{objeto.titulo}}</h4>
+            <h2 class="tam">Descrição</h2>
+            <h5 class="tam2">{{objeto.descricao}}</h5>
           </ion-label>
 
       </ion-col>
     </ion-row>
-
+<ion-card padding>
   <ion-row>
+
       <ion-col>
-          <ion-label>
-            Imagem Para o Objeto {{objeto.titulo}}
+        <ion-row>
+          <ion-label class="centro">
+            Click para tirar a foto
           </ion-label>
-          <button ion-button (click)="foto()">Tirar Foto</button>
+        </ion-row>
+
+        <ion-row>
+          <button class="btn" ion-button (click)="foto()"><ion-icon name="camera"></ion-icon></button>
+        </ion-row>
+
       </ion-col>
     </ion-row>
+    </ion-card>
 
 
 </ion-content>

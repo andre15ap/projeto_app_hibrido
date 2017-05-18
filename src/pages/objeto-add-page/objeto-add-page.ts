@@ -3,7 +3,9 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { Objeto } from "../../models/objeto";
 import { ObjetoProvider } from "../../providers/objeto-provider";
 import { CameraProvider } from "../../providers/camera-provider";
+import { LoginProvider } from "../../providers/login-provider";
 import { ObjetoAddImgPage } from "../objeto-add-img-page/objeto-add-img-page";
+import { LoginPage } from "../login/login";
 import {Camera} from '@ionic-native/camera';
 import { FormBuilder, Validators } from '@angular/forms'
 
@@ -24,6 +26,7 @@ export class ObjetoAddPage {
               public viewCtrl: ViewController,
               public formBuilder: FormBuilder,
   			      public objetoProvider: ObjetoProvider,
+  			      public loginProvider: LoginProvider,
   			      public cameraProvider: CameraProvider,
               private camera: Camera) {
     this.objeto = new Objeto;
@@ -35,16 +38,23 @@ export class ObjetoAddPage {
   //  });
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    if(!this.loginProvider.autenticado){
+      this.navCtrl.setRoot(LoginPage);
+      this.viewCtrl.dismiss();
+    }
     this.objeto = this.navParams.get('objeto');// verifica se vai atualizar ou novo
     if(!this.objeto){
     	this.objeto = new Objeto();
+
     }
   }
 
   salvarObjeto(){
-
     this.objeto.estado = "novo";
+    if(!this.objeto.imagem){
+      this.objeto.imagem = "";
+    }
     this.objeto.ketReference = this.objetoProvider.save(this.objeto);
 
   this.navCtrl.push(ObjetoAddImgPage,{'objeto': this.objeto});

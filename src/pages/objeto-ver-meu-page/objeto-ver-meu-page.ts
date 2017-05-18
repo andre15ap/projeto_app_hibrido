@@ -4,7 +4,10 @@ import { Objeto } from "../../models/objeto"
 import { Usuario  } from "../../models/usuario"
 import { ObjetoProvider } from "../../providers/objeto-provider";
 import { ObjetoListPage } from "../objeto-list-page/objeto-list-page";
+import { ObjetoAddPage } from "../objeto-add-page/objeto-add-page";
 import firebase from "firebase";
+import { LoginPage } from "../login/login";
+import { LoginProvider } from "../../providers/login-provider";
 
 /**
  * Generated class for the ObjetoVerMeuPage page.
@@ -25,6 +28,7 @@ export class ObjetoVerMeuPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public ngZone: NgZone,
+              public loginProvider: LoginProvider,
               public objetoProvider: ObjetoProvider,
               public alertCtrl: AlertController) {
 
@@ -33,6 +37,10 @@ export class ObjetoVerMeuPage {
   }
 
   ionViewWillEnter() {
+
+    if(!this.loginProvider.autenticado){
+      this.navCtrl.setRoot(LoginPage);
+    }
         //this.objeto = this.navParams.get('objeto');
         firebase.database().ref('/dadosUsuarios/' + this.objeto.usuario).once('value', (snapshot)=> {
         console.log(snapshot.val());
@@ -43,6 +51,12 @@ export class ObjetoVerMeuPage {
         console.log(this.usuario.nome);
 
     });
+  }
+
+
+
+  editar(objeto:Objeto){
+     this.navCtrl.push(ObjetoAddPage,{'objeto':objeto});
   }
 
   confirmDoar() { // mensagem de confirmação para sair
@@ -70,7 +84,7 @@ export class ObjetoVerMeuPage {
     this.objeto.estado = "doado";
     this.objetoProvider.save(this.objeto);
     this.navCtrl.setRoot(ObjetoListPage);
-    console.log("doado");
+    //console.log("doado");
   }
 
 }

@@ -4,6 +4,8 @@ import { Objeto } from "../../models/objeto";
 import { ObjetoProvider } from "../../providers/objeto-provider";
 import { CameraProvider } from "../../providers/camera-provider";
 import { ObjetoListPage } from "../objeto-list-page/objeto-list-page";
+import { LoginPage } from "../login/login";
+import { LoginProvider } from "../../providers/login-provider";
 
 /**
  * Generated class for the ObjetoAddImgPage page.
@@ -22,11 +24,16 @@ export class ObjetoAddImgPage {
               public navParams: NavParams,
               public viewCtrl: ViewController,
               public objetoProvider: ObjetoProvider,
+              public loginProvider: LoginProvider,
               public cameraProvider: CameraProvider) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.objeto = this.navParams.get('objeto');
+    if(!this.loginProvider.autenticado){
+      this.navCtrl.setRoot(LoginPage);
+    }
+
   }
 
   foto()

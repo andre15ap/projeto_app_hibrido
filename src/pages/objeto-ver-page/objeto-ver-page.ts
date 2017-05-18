@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Objeto } from "../../models/objeto"
 import { Usuario  } from "../../models/usuario"
 import firebase from "firebase";
+import { LoginPage } from "../login/login";
+import { LoginProvider } from "../../providers/login-provider";
 //import { AngularFire } from 'angularfire2';
 
 
@@ -22,6 +24,7 @@ export class ObjetoVerPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public loginProvider: LoginProvider,
               public ngZone: NgZone) {
 
     this.objeto = this.navParams.get('objeto');
@@ -32,6 +35,9 @@ export class ObjetoVerPage {
 
 
   ionViewWillEnter() {
+        if(!this.loginProvider.autenticado){
+          this.navCtrl.setRoot(LoginPage);
+        }
         this.objeto = this.navParams.get('objeto');
         firebase.database().ref('/dadosUsuarios/' + this.objeto.usuario).once('value', (snapshot)=> {
         console.log(snapshot.val());

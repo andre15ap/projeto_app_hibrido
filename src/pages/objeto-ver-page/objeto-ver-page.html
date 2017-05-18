@@ -7,40 +7,41 @@
 
 </ion-header>
 
-<ion-content no-padding>
-<ion-card>
+<ion-content class="cont" no-padding>
 
-  <ion-item>
-
-    <h1>{{objeto.titulo}}</h1>
-    <p>Doador: {{usuario.nome}}</p>
-  </ion-item>
-
-  <!-- <img class="img" src="../../assets/icon/favicon.ico"/> -->
-  <img class="img" [src]="objeto.imagem" *ngIf="objeto.imagem != 'img' " />
-
-  <ion-card-content>
-
-      <h2 class="testo">Descrição</h2>
-      <p class="testo">{{objeto.descricao}}</p>
-
-
+<ion-card-content>
     <ion-item>
-      <h2>Telefone do Doador</h2>
-      <p>{{usuario.telefone}}</p>
+      <h1 class="tam" color="principal">{{objeto.titulo}}</h1>
+      <p>Doador: {{usuario.nome}}</p>
     </ion-item>
 
     <ion-item>
-      <h2>Email do Doador</h2>
-      <p>{{usuario.email}}</p>
+      <!-- <img class="img" src="../../assets/icon/favicon.ico"/> -->
+      <img class="img" [src]="objeto.imagem" *ngIf="objeto.imagem != 'img' " />
+    </ion-item>
+
+    <ion-card class="semmargin" content>
+      <h2 class="tam testo">Descrição</h2>
+
+          <p class="tam2 testo">{{objeto.descricao}}</p>
+
+    </ion-card>
+
+    <ion-item>
+      <h2 class="tam">Telefone do Doador</h2>
+      <p class="tam2">{{usuario.telefone}}</p>
     </ion-item>
 
     <ion-item>
-      <h2>{{objeto.estado == 'doado' ? 'Objeto Já Doado' : 'Para Doação'}}</h2>
+      <h2 class="tam">Email do Doador</h2>
+      <p class="tam2">{{usuario.email}}</p>
     </ion-item>
+
   </ion-card-content>
+ <ion-card-content>
+     <ion-item>
+       <h2 class="centro">{{objeto.estado == 'doado' ? 'Objeto Já Doado' : 'Objeto Para doar'}}</h2>
+   </ion-item>
+ </ion-card-content>
 
-
-
-</ion-card>
 </ion-content>

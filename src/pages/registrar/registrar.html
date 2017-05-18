@@ -8,10 +8,10 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="cont" padding>
 <ion-card>
 		<ion-card-header>
-		<h4>Preencha os campos</h4>
+		<h2 class="tam">Preencha os campos</h2>
 		</ion-card-header>
 			<ion-card-content>
 				<ion-grid>
@@ -53,7 +53,7 @@
 						<ion-col>
 							<ion-item>
 								<ion-label floating>
-									Senha
+									Senha Min. 6 digitos
 								</ion-label>
 								<ion-input name="senha" type="password" #senha required [(ngModel)]="credencial.senha"></ion-input>
 							</ion-item>
@@ -62,7 +62,7 @@
 
 					<ion-row>
 						<ion-col>
-							<button ion-button clear full (click)="doRegister()">
+							<button class="tam2" ion-button clear full (click)="doRegister()">
 								Registrar
 							</button>
 						</ion-col>

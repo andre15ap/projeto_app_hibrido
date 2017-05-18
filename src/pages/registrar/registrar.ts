@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { LoginProvider } from "../../providers/login-provider";
 
@@ -17,13 +17,20 @@ export class RegistrarPage {
 
   constructor(public navCtrl: NavController,
   			  public navParams: NavParams,
-  			  public loginProvider: LoginProvider) {
+  			  public loginProvider: LoginProvider,
+        public loadingCtrl: LoadingController) {
 
   	this.credencial = new Credencial();
     this.usuario = new Usuario();
   }
 
   doRegister(){
+      let loader = this.loadingCtrl.create({
+        content: "Please wait...",
+        duration: 1500
+      });
+      loader.present();
+
   	this.loginProvider.registrarUsuario(this.usuario, this.credencial);
   }
 

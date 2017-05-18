@@ -30,23 +30,23 @@ export class CameraProvider {
   }
 
 
-  carregaFoto() {
-    var result;
-
-    return new Promise((resolve, reject) => {
-      // carrega foto do firebase
-      firebase.database().ref('assets').child(firebase.auth().currentUser.uid).once('value', (_snapshot: any) => {
-          //mudar de cima para o id do objeto
-        var element = _snapshot.val().URL;
-        result = element;
-
-        resolve(result);
-
-        // callback(result);
-      });
-
-    });
-  }
+  // carregaFoto() {
+  //   var result;
+  //
+  //   return new Promise((resolve, reject) => {
+  //     // carrega foto do firebase
+  //     firebase.database().ref('assets').child(firebase.auth().currentUser.uid).once('value', (_snapshot: any) => {
+  //         //mudar de cima para o id do objeto
+  //       var element = _snapshot.val().URL;
+  //       result = element;
+  //
+  //       resolve(result);
+  //
+  //       // callback(result);
+  //     });
+  //
+  //   });
+  // }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,7 +86,7 @@ export class CameraProvider {
         return this.salvarParaAssetsDaBaseDeDados(_uploadSnapshot);
 
       }).then((_uploadSnapshot: any) => {
-        alert('Arquivo salvo para o catálogo com sucesso');
+        alert('Objeto Salvo');
         this.loading.dismiss();
         // return this.assetCollection;
       }, (_error) => {

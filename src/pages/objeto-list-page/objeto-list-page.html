@@ -23,7 +23,10 @@
       <ion-thumbnail item-left>
         <img [src]="objeto.imagem" *ngIf="objeto.imagem != 'img' " />
       </ion-thumbnail>
-      <h2>{{ objeto.titulo }}</h2>
+      <h2 class="tam1">{{ objeto.titulo }}</h2>
+      <p>
+        Descrição: {{objeto.descricao}}
+      </p>
  		</ion-item>
  		<ion-item-options side='right'>
  			<button class="botao" ion-button color='danger' (click)="showConfirm(objeto)"> <ion-icon name="trash"></ion-icon>

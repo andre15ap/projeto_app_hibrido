@@ -17,7 +17,7 @@ export class ObjetoProvider {
 
   constructor(public loginProvider : LoginProvider) {
 
-    console.log('entrou no provider objeto');
+    // console.log('entrou no provider objeto');
 
  	this.inicializar();
 
@@ -26,7 +26,7 @@ export class ObjetoProvider {
   private inicializar(){
   	//this.reference = firebase.database().ref('/dadosUsuarios/'+this.loginProvider.usuarioAtual.uid+'/objetos/');
   	this.reference = firebase.database().ref('/objetos/');
-  	console.log('iniciou');
+  	// console.log('iniciou');
   }
 
 
@@ -38,7 +38,7 @@ export class ObjetoProvider {
  		refKey = this.reference.push().key; // caso não exista id, então é um objeto novo, pega novo id
  		objeto.ketReference = refKey; //o objeto novo recebe o novo id gerado na linha de cima
  	}
-	objeto.imagem = 'img';
+
 	objeto.usuario = this.loginProvider.usuarioAtual.uid;
  	this.reference.child(refKey).update(objeto); //atualiza o objeto no firebase
 	console.log('salvou objeto');

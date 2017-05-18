@@ -20,9 +20,10 @@
         <img [src]="objeto.imagem" *ngIf="objeto.imagem != 'img' " />
       </ion-thumbnail>
       <h2>{{ objeto.titulo }}</h2>
+      <p>
+        Descrição: {{objeto.descricao}}        
+      </p>
  		</ion-item>
-
-
 </ion-list>
 
 <div *ngIf="objetos.length < 1">
